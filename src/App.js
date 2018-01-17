@@ -31,16 +31,14 @@ class App extends Component {
         )}
         </OData>
 
-
-
       </div>
     );
   }
 
+/* Setup consistent fetch responses
 
-/* Setup consistent fetch responses */
-componentWillMount() {
-    fetch('http://services.odata.org/V4/TripPinService/People')
+    componentWillMount() {
+    fetch(baseUrl)
         .then((response) => response.json())
         .then((responseJson) => {
             return responseJson.value[0].FirstName
@@ -48,6 +46,8 @@ componentWillMount() {
         .catch((error) => { console.error(error) });
 
 }
+    */
+
 }
 
 export default App;
