@@ -4,7 +4,7 @@ import './App.css';
 import OData from 'react-odata';
 
 const baseUrl = 'http://services.odata.org/V4/TripPinService/People';
-const query = { filter: { FirstName: 'Russell' } };
+const query = { filter: { FirstName: 'Russell' }  };
 
 class App extends Component {
 
@@ -14,19 +14,25 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Demo retrieving data from OData and React</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+                Temporary retrieving data from the following OData service: <code>http://services.odata.org/V4/TripPinService/People</code>
         </p>
 
-       <OData baseUrl={baseUrl} query={query}>
+      <div><span>Name</span> - <span>Number of emails</span></div>
+
+      {/*query={query}*/}
+       <OData baseUrl={baseUrl} >
        {({ loading, error, data }) => (
 
-          <div>
-      {loading && <span>Loading... (()=>{console.log(loading)}) </span>}
+      <div>
+            {loading && <span>Loading... (()=>{console.log(loading)}) </span>}
             {error && {/* handle error here */ }}
-            {data && data.value.map((d, i) => <div key={i} id={i}>{d.FirstName} {d.Gender}</div>)}
+            {data && data.value.map((d, i) => <div key={i} id={i}>
+                {d.FirstName} - 
+                {d.Emails.length} 
+                {console.log(d)}</div>)}
             </div>
         )}
         </OData>
