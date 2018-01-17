@@ -4,7 +4,9 @@ import './App.css';
 import OData from 'react-odata';
 
 const baseUrl = 'http://services.odata.org/V4/TripPinService/People';
-const query = { filter: { FirstName: 'Russell' }  };
+const query = { filter: { FirstName: 'Javier' }  };
+
+//http://services.odata.org/V4/TripPinService/People('russellwhyte')
 
 class App extends Component {
 
@@ -36,6 +38,23 @@ class App extends Component {
             </div>
         )}
         </OData>
+
+    <hr></hr>
+            <div>Filtering by Javier Name</div>
+       <OData baseUrl={baseUrl} query={query} >
+    {({ loading, error, data }) => (
+
+    <div>
+    {loading && <span>Loading... (()=>{console.log(loading)}) </span>}
+{error && {/* handle error here */ }}
+{data && data.value.map((d, i) => <div key={i} id={i}>
+        {d.FirstName} -
+        {d.Emails.length}
+    {console.log(d)}</div>)}
+</div>
+)}
+    </OData>
+
 
       </div>
     );
